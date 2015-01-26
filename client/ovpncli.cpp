@@ -35,7 +35,7 @@
 #pragma GCC visibility pop
 #endif
 #else
-#error no public interface export defined for this compiler
+#pragma message "no public interface export defined for this compiler~~~"
 #endif
 
 // debug settings (production setting in parentheses)

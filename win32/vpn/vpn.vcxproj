@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\client\ovpncli.cpp" />
+    <ClCompile Include="..\..\test\ovpncli\cli.cpp" />
+    <ClCompile Include="..\..\test\ssl\proto.cpp" />
+    <ClCompile Include="..\..\win\getopt.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\client\ovpncli.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\addrpair.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\cidrmap.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\ip.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\iperr.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\ipv4.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\ipv6.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\macaddr.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\pool.hpp" />
+    <ClInclude Include="..\..\openvpn\addr\range.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\cf\cf.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\cf\cfhelper.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\cf\cfsec.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\cf\error.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\crypto\api.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\crypto\cipher.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\crypto\digest.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\crypto\hmac.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\ssl\sslctx.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\util\rand.hpp" />
+    <ClInclude Include="..\..\openvpn\applecrypto\util\reachable.hpp" />
+    <ClInclude Include="..\..\openvpn\auth\cr.hpp" />
+    <ClInclude Include="..\..\openvpn\buffer\buffer.hpp" />
+    <ClInclude Include="..\..\openvpn\buffer\memq.hpp" />
+    <ClInclude Include="..\..\openvpn\client\cliconnect.hpp" />
+    <ClInclude Include="..\..\openvpn\client\cliconstants.hpp" />
+    <ClInclude Include="..\..\openvpn\client\clicreds.hpp" />
+    <ClInclude Include="..\..\openvpn\client\clievent.hpp" />
+    <ClInclude Include="..\..\openvpn\client\clihalt.hpp" />
+    <ClInclude Include="..\..\openvpn\client\cliopt.hpp" />
+    <ClInclude Include="..\..\openvpn\client\cliopthelper.hpp" />
+    <ClInclude Include="..\..\openvpn\client\cliproto.hpp" />
+    <ClInclude Include="..\..\openvpn\client\optfilt.hpp" />
+    <ClInclude Include="..\..\openvpn\client\remotelist.hpp" />
+    <ClInclude Include="..\..\openvpn\client\rgopt.hpp" />
+    <ClInclude Include="..\..\openvpn\common\abort.hpp" />
+    <ClInclude Include="..\..\openvpn\common\asiodispatch.hpp" />
+    <ClInclude Include="..\..\openvpn\common\asiosignal.hpp" />
+    <ClInclude Include="..\..\openvpn\common\backref.hpp" />
+    <ClInclude Include="..\..\openvpn\common\base64.hpp" />
+    <ClInclude Include="..\..\openvpn\common\circ_list.hpp" />
+    <ClInclude Include="..\..\openvpn\common\endian.hpp" />
+    <ClInclude Include="..\..\openvpn\common\exception.hpp" />
+    <ClInclude Include="..\..\openvpn\common\ffs.hpp" />
+    <ClInclude Include="..\..\openvpn\common\file.hpp" />
+    <ClInclude Include="..\..\openvpn\common\format.hpp" />
+    <ClInclude Include="..\..\openvpn\common\hash.hpp" />
+    <ClInclude Include="..\..\openvpn\common\hexstr.hpp" />
+    <ClInclude Include="..\..\openvpn\common\lex.hpp" />
+    <ClInclude Include="..\..\openvpn\common\memcmp.hpp" />
+    <ClInclude Include="..\..\openvpn\common\mode.hpp" />
+    <ClInclude Include="..\..\openvpn\common\msgwin.hpp" />
+    <ClInclude Include="..\..\openvpn\common\number.hpp" />
+    <ClInclude Include="..\..\openvpn\common\options.hpp" />
+    <ClInclude Include="..\..\openvpn\common\ostream.hpp" />
+    <ClInclude Include="..\..\openvpn\common\path.hpp" />
+    <ClInclude Include="..\..\openvpn\common\platform.hpp" />
+    <ClInclude Include="..\..\openvpn\common\platform_name.hpp" />
+    <ClInclude Include="..\..\openvpn\common\port.hpp" />
+    <ClInclude Include="..\..\openvpn\common\process.hpp" />
+    <ClInclude Include="..\..\openvpn\common\rc.hpp" />
+    <ClInclude Include="..\..\openvpn\common\scoped_fd.hpp" />
+    <ClInclude Include="..\..\openvpn\common\scoped_ptr.hpp" />
+    <ClInclude Include="..\..\openvpn\common\signal.hpp" />
+    <ClInclude Include="..\..\openvpn\common\socktypes.hpp" />
+    <ClInclude Include="..\..\openvpn\common\split.hpp" />
+    <ClInclude Include="..\..\openvpn\common\splitlines.hpp" />
+    <ClInclude Include="..\..\openvpn\common\string.hpp" />
+    <ClInclude Include="..\..\openvpn\common\thread.hpp" />
+    <ClInclude Include="..\..\openvpn\common\types.hpp" />
+    <ClInclude Include="..\..\openvpn\common\unicode-impl.hpp" />
+    <ClInclude Include="..\..\openvpn\common\unicode.hpp" />
+    <ClInclude Include="..\..\openvpn\common\usecount.hpp" />
+    <ClInclude Include="..\..\openvpn\common\version.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\compnull.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\compress.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\compstub.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\lz4.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\lzo.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\lzoasym.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\lzoasym_impl.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\lzoselect.hpp" />
+    <ClInclude Include="..\..\openvpn\compress\snappy.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\cipher.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\crypto.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\decrypt.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\encrypt.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\hmac.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\packet_id.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\selftest.hpp" />
+    <ClInclude Include="..\..\openvpn\crypto\static_key.hpp" />
+    <ClInclude Include="..\..\openvpn\error\error.hpp" />
+    <ClInclude Include="..\..\openvpn\error\excode.hpp" />
+    <ClInclude Include="..\..\openvpn\frame\frame.hpp" />
+    <ClInclude Include="..\..\openvpn\frame\frame_init.hpp" />
+    <ClInclude Include="..\..\openvpn\frame\memq_dgram.hpp" />
+    <ClInclude Include="..\..\openvpn\frame\memq_stream.hpp" />
+    <ClInclude Include="..\..\openvpn\http\header.hpp" />
+    <ClInclude Include="..\..\openvpn\http\parseutil.hpp" />
+    <ClInclude Include="..\..\openvpn\http\reply.hpp" />
+    <ClInclude Include="..\..\openvpn\http\request.hpp" />
+    <ClInclude Include="..\..\openvpn\init\cryptoinit.hpp" />
+    <ClInclude Include="..\..\openvpn\init\engineinit.hpp" />
+    <ClInclude Include="..\..\openvpn\init\initprocess.hpp" />
+    <ClInclude Include="..\..\openvpn\ip\ip.hpp" />
+    <ClInclude Include="..\..\openvpn\legal\copyright.hpp" />
+    <ClInclude Include="..\..\openvpn\log\lognull.hpp" />
+    <ClInclude Include="..\..\openvpn\log\logsimple.hpp" />
+    <ClInclude Include="..\..\openvpn\log\logthread.hpp" />
+    <ClInclude Include="..\..\openvpn\log\sessionstats.hpp" />
+    <ClInclude Include="..\..\openvpn\netconf\linux\route.hpp" />
+    <ClInclude Include="..\..\openvpn\netconf\mac\gwv4.hpp" />
+    <ClInclude Include="..\..\openvpn\netconf\mac\route.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\bio\bio_memq_dgram.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\bio\bio_memq_stream.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\crypto\api.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\crypto\cipher.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\crypto\digest.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\crypto\hmac.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\pki\crl.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\pki\dh.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\pki\pkey.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\pki\x509.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\pki\x509store.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\ssl\sslctx.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\util\engine.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\util\error.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\util\free.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\util\init.hpp" />
+    <ClInclude Include="..\..\openvpn\openssl\util\rand.hpp" />
+    <ClInclude Include="..\..\openvpn\options\continuation.hpp" />
+    <ClInclude Include="..\..\openvpn\options\merge.hpp" />
+    <ClInclude Include="..\..\openvpn\options\sanitize.hpp" />
+    <ClInclude Include="..\..\openvpn\pki\cclist.hpp" />
+    <ClInclude Include="..\..\openvpn\pki\epkibase.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\crypto\api.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\crypto\cipher.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\crypto\digest.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\crypto\hmac.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\pki\dh.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\pki\rsactx.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\pki\x509cert.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\ssl\sslctx.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\util\error.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\util\rand.hpp" />
+    <ClInclude Include="..\..\openvpn\polarssl\util\selftest.hpp" />
+    <ClInclude Include="..\..\openvpn\proxy\httpdigest.hpp" />
+    <ClInclude Include="..\..\openvpn\proxy\ntlm.hpp" />
+    <ClInclude Include="..\..\openvpn\proxy\proxyauth.hpp" />
+    <ClInclude Include="..\..\openvpn\random\boostrand.hpp" />
+    <ClInclude Include="..\..\openvpn\random\prng.hpp" />
+    <ClInclude Include="..\..\openvpn\random\randint.hpp" />
+    <ClInclude Include="..\..\openvpn\random\randtype.hpp" />
+    <ClInclude Include="..\..\openvpn\reliable\relack.hpp" />
+    <ClInclude Include="..\..\openvpn\reliable\relcommon.hpp" />
+    <ClInclude Include="..\..\openvpn\reliable\relrecv.hpp" />
+    <ClInclude Include="..\..\openvpn\reliable\relsend.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\kuparse.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\nscert.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\proto.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\protostack.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\proto_context_options.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\psid.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\tlsprf.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\tlsver.hpp" />
+    <ClInclude Include="..\..\openvpn\ssl\tls_remote.hpp" />
+    <ClInclude Include="..\..\openvpn\time\asiotimer.hpp" />
+    <ClInclude Include="..\..\openvpn\time\coarsetime.hpp" />
+    <ClInclude Include="..\..\openvpn\time\time.hpp" />
+    <ClInclude Include="..\..\openvpn\time\timestr.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\client\httpcli.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\client\tcpcli.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\client\transbase.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\client\udpcli.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\pktstream.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\protocol.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\reconnect_notify.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\socket_protect.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\tcplink.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\transmap.hpp" />
+    <ClInclude Include="..\..\openvpn\transport\udplink.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\builder\base.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\builder\capture.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\builder\client.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\client\tunbase.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\client\tunnull.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\layer.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\linux\client\tuncli.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\linux\tun.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\mac\client\tuncli.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\mac\tun.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\tunlog.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\tunspec.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\tununixbase.hpp" />
+    <ClInclude Include="..\..\win\getopt.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9F2E9D81-0E7F-43DA-8630-1445DD16197A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>vpn</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\..\openssl-1.0.2\include;$(SolutionDir)\..\..\boost_1_57_0\;$(SolutionDir)\..\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\..\..\boost_1_57_0\stage\lib;$(SolutionDir)\..\..\..\openssl-1.0.2\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;NOMINMAX;_CRT_SECURE_NO_WARNINGS;USE_OPENSSL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libeay32.lib;ssleay32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

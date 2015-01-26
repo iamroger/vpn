@@ -19,7 +19,7 @@
 //    along with this program in the COPYING file.
 //    If not, see <http://www.gnu.org/licenses/>.
 
-#include <getopt.h> // for getopt_long
+#include <win\getopt.h> // for getopt_long
 #include <stdlib.h> // for atoi
 
 #include <string>

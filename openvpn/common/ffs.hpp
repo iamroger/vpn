@@ -22,11 +22,31 @@
 #ifndef OPENVPN_COMMON_FFS_H
 #define OPENVPN_COMMON_FFS_H
 
-#include <strings.h> // for ffs (and fls on BSD)
+#include <string.h> // for ffs (and fls on BSD)
 
 #include <openvpn/common/platform.hpp>
 
 namespace openvpn {
+  inline int ffs (int i)
+  {
+    static const unsigned char table[] =
+      {
+        0,1,2,2,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+        6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,
+        7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
+        7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,
+        8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
+        8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
+        8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
+        8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+      };
+    unsigned int a;
+    unsigned int x = i & -i;
+  
+    a = x <= 0xffff ? (x <= 0xff ? 0 : 8) : (x <= 0xffffff ?  16 : 24);
+  
+    return table[x >> a] + a;
+  }
   // find the zero-based position of the first 1 bit in a word
   // (scanning from least significant bit to most significant)
   inline const int find_first_set(unsigned int v)
