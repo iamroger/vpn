@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+echo "******* BOOST"
+$O3/scripts/android/build-boost
+echo "******* MINICRYPTO"
+$O3/scripts/android/build-minicrypto
+echo "******* POLARSSL"
+$O3/scripts/android/build-polarssl
+echo "******* OpenSSL"
+$O3/scripts/android/build-openssl-small
+#echo "******* LZO"
+#$O3/scripts/android/build-lzo
+echo "******* SNAPPY"
+$O3/scripts/android/build-snappy

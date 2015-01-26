@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+. $O3/lib-versions
+rm -rf boost $BOOST_VERSION
+mkdir boost
+tar xfz $DL/$BOOST_VERSION.tar.gz
+cd $BOOST_VERSION
+cat >>tools/build/v2/user-config.jam <<EOF
+using gcc : linux : g++
+            :
+	        <compileflags>-fPIC
+            ; 
+EOF
+./bootstrap.sh
+./bjam -d2 toolset=gcc-linux --with-system --with-thread variant=release link=shared threading=multi runtime-link=shared target-os=linux
+mv stage ../boost/stage-linux
+cp -a boost ../boost/
