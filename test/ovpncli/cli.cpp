@@ -118,11 +118,13 @@ void handler(int signum)
       if (the_client)
 	the_client->stop();
       break;
+#ifndef _WIN32_WINNT
     case SIGHUP:
       std::cout << "received reconnect signal " << signum << std::endl;
       if (the_client)
 	the_client->reconnect(2);
       break;
+#endif
     default:
       std::cout << "received unknown signal " << signum << std::endl;
       break;
@@ -333,8 +335,11 @@ int main(int argc, char *argv[])
 		std::cout << "CONNECTING..." << std::endl;
 
 		// catch signals
+#if defined(_WIN32_WINNT)
+		Signal signal(handler, Signal::F_SIGINT|Signal::F_SIGTERM);
+#else
 		Signal signal(handler, Signal::F_SIGINT|Signal::F_SIGTERM|Signal::F_SIGHUP);
-
+#endif
 		// start connect thread
 		the_client = &client;
 		boost::thread* thread = new boost::thread(boost::bind(&worker_thread));

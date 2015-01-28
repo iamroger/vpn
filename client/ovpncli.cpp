@@ -35,6 +35,8 @@
 #pragma GCC visibility pop
 #endif
 #else
+#define OPENVPN_CLIENT_EXPORT
+#include "ovpncli.hpp" 
 #pragma message "no public interface export defined for this compiler~~~"
 #endif
 

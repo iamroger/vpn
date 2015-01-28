@@ -42,23 +42,32 @@ namespace openvpn {
 
     Signal(const handler_t handler, const unsigned int flags)
     {
+#ifndef _WIN32_WINNT
       struct sigaction sa;
       sa.sa_handler = handler;
       sigemptyset(&sa.sa_mask);
       sa.sa_flags = SA_RESTART; // restart functions if interrupted by handler
       sigconf(sa, flags_ = flags);
+#else
+      signal(flags_ = flags, handler);
+#endif
     }
 
     ~Signal()
     {
+#ifndef _WIN32_WINNT
       struct sigaction sa;
       sa.sa_handler = SIG_DFL;
       sigemptyset(&sa.sa_mask);
       sa.sa_flags = 0;
       sigconf(sa, flags_);
+#else
+      signal(SIGINT, SIG_DFL);
+#endif
     }
 
   private:
+#ifndef _WIN32_WINNT
     static void sigconf(struct sigaction& sa, const unsigned int flags)
     {
       if (flags & F_SIGINT)
@@ -69,12 +78,13 @@ namespace openvpn {
 	sigact(sa, SIGHUP);
     }
 
+
     static void sigact(struct sigaction& sa, const int sig)
     {
       if (sigaction(sig, &sa, NULL) == -1)
 	throw signal_error();
     }
-
+#endif
     unsigned int flags_;
   };
 }
