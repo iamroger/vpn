@@ -642,243 +642,243 @@ private:
 };
 
 // execute the unit test in one thread
-int test(const int thread_num)
-{
-  try {
-    // frame
-    Frame::Ptr frame(new Frame(Frame::Context(128, 256, 128, 0, 16, 0)));
+//int test(const int thread_num)
+//{
+//  try {
+//    // frame
+//    Frame::Ptr frame(new Frame(Frame::Context(128, 256, 128, 0, 16, 0)));
+//
+//    // RNG
+//    ClientRandomAPI::Ptr rng_cli(new ClientRandomAPI());
+//    RandomInt<ClientRandomAPI> rand(*rng_cli);
+//    PRNG<ClientRandomAPI, ClientCryptoAPI>::Ptr prng_cli(new PRNG<ClientRandomAPI, ClientCryptoAPI>(STRINGIZE(PROTO_DIGEST), rng_cli, 16));
+//
+//    ServerRandomAPI::Ptr rng_serv(new ServerRandomAPI());
+//    PRNG<ServerRandomAPI, ServerCryptoAPI>::Ptr prng_serv(new PRNG<ServerRandomAPI, ServerCryptoAPI>(STRINGIZE(PROTO_DIGEST), rng_serv, 16));
+//
+//    // init simulated time
+//    Time time;
+//    const Time::Duration time_step = Time::Duration::binary_ms(100);
+//
+//    // client config files
+//    const std::string ca_crt = read_text("ca.crt");
+//    const std::string client_crt = read_text("client.crt");
+//    const std::string client_key = read_text("client.key");
+//    const std::string server_crt = read_text("server.crt");
+//    const std::string server_key = read_text("server.key");
+//    const std::string dh_pem = read_text("dh.pem");
+//    const std::string tls_auth_key = read_text("tls-auth.key");
+//
+//    // client config
+//    ClientSSLAPI::Config cc;
+//    cc.mode = Mode(Mode::CLIENT);
+//    cc.frame = frame;
+//#ifdef USE_APPLE_SSL
+//    cc.load_identity("etest");
+//#else
+//    cc.load_ca(ca_crt);
+//    cc.load_cert(client_crt);
+//    cc.load_private_key(client_key);
+//#endif
+//#ifdef VERBOSE
+//    cc.enable_debug();
+//#endif
+//#if defined(USE_POLARSSL)
+//    cc.rng = rng_cli;
+//#endif
+//
+//    // client stats
+//    MySessionStats::Ptr cli_stats(new MySessionStats);
+//
+//    // client ProtoContext config
+//    typedef ProtoContext<ClientRandomAPI, ClientCryptoAPI, ClientSSLAPI> ClientProtoContext;
+//    ClientProtoContext::Config::Ptr cp(new ClientProtoContext::Config);
+//    cp->ssl_ctx.reset(new ClientSSLAPI(cc));
+//    cp->frame = frame;
+//    cp->now = &time;
+//    cp->rng = rng_cli;
+//    cp->prng = prng_cli;
+//    cp->protocol = Protocol(Protocol::UDPv4);
+//    cp->layer = Layer(Layer::OSI_LAYER_3);
+//    cp->comp_ctx = CompressContext(CompressContext::LZO_STUB, false);
+//    cp->cipher = ClientCryptoAPI::Cipher(STRINGIZE(PROTO_CIPHER));
+//    cp->digest = ClientCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
+//#ifdef USE_TLS_AUTH
+//    cp->tls_auth_key.parse(tls_auth_key);
+//    cp->tls_auth_digest = ClientCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
+//    cp->key_direction = 0;
+//#endif
+//    cp->reliable_window = 4;
+//    cp->max_ack_list = 4;
+//    cp->pid_mode = PacketIDReceive::UDP_MODE;
+//    cp->pid_seq_backtrack = 64;
+//    cp->pid_time_backtrack = 30;
+//#if defined(HANDSHAKE_WINDOW)
+//    cp->handshake_window = Time::Duration::seconds(HANDSHAKE_WINDOW);
+//#elif SITER > 1
+//    cp->handshake_window = Time::Duration::seconds(30);
+//#else
+//    cp->handshake_window = Time::Duration::seconds(18); // will cause a small number of handshake failures
+//#endif
+//    cp->become_primary = Time::Duration::seconds(30);
+//#if defined(CLIENT_NO_RENEG)
+//    cp->renegotiate = Time::Duration::infinite();
+//#else
+//    cp->renegotiate = Time::Duration::seconds(90);
+//#endif
+//    cp->expire = cp->renegotiate + cp->renegotiate;
+//    cp->keepalive_ping = Time::Duration::seconds(5);
+//    cp->keepalive_timeout = Time::Duration::seconds(60);
+//
+//#ifdef VERBOSE
+//    std::cout << "CLIENT OPTIONS: " << cp->options_string() << std::endl;
+//    std::cout << "CLIENT PEER INFO:" << std::endl;
+//    std::cout << cp->peer_info_string();
+//#endif
+//
+//    // server config
+//    ServerSSLAPI::Config sc;
+//    sc.mode = Mode(Mode::SERVER);
+//    sc.frame = frame;
+//    sc.load_ca(ca_crt);
+//    sc.load_cert(server_crt);
+//    sc.load_private_key(server_key);
+//    sc.load_dh(dh_pem);
+//#if defined(USE_POLARSSL_SERVER)
+//    sc.rng = rng_serv;
+//#endif
+//#ifdef VERBOSE
+//    sc.enable_debug();
+//#endif
+//
+//    // server ProtoContext config
+//    typedef ProtoContext<ServerRandomAPI, ServerCryptoAPI, ServerSSLAPI> ServerProtoContext;
+//    ServerProtoContext::Config::Ptr sp(new ServerProtoContext::Config);
+//    sp->ssl_ctx.reset(new ServerSSLAPI(sc));
+//    sp->frame = frame;
+//    sp->now = &time;
+//    sp->rng = rng_serv;
+//    sp->prng = prng_serv;
+//    sp->protocol = Protocol(Protocol::UDPv4);
+//    sp->layer = Layer(Layer::OSI_LAYER_3);
+//    sp->comp_ctx = CompressContext(CompressContext::LZO_STUB, false);
+//    sp->cipher = ServerCryptoAPI::Cipher(STRINGIZE(PROTO_CIPHER));
+//    sp->digest = ServerCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
+//#ifdef USE_TLS_AUTH
+//    sp->tls_auth_key.parse(tls_auth_key);
+//    sp->tls_auth_digest = ServerCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
+//    sp->key_direction = 1;
+//#endif
+//    sp->reliable_window = 4;
+//    sp->max_ack_list = 4;
+//    sp->pid_mode = PacketIDReceive::UDP_MODE;
+//    sp->pid_seq_backtrack = 64;
+//    sp->pid_time_backtrack = 30;
+//#if defined(HANDSHAKE_WINDOW)
+//    sp->handshake_window = Time::Duration::seconds(HANDSHAKE_WINDOW);
+//#elif SITER > 1
+//    sp->handshake_window = Time::Duration::seconds(30);
+//#else
+//    sp->handshake_window = Time::Duration::seconds(17) + Time::Duration::binary_ms(512);
+//#endif
+//    sp->become_primary = Time::Duration::seconds(30);
+//#if defined(SERVER_NO_RENEG)
+//    sp->renegotiate = Time::Duration::infinite();
+//#else
+//    sp->renegotiate = Time::Duration::seconds(90);
+//#endif
+//    sp->expire = sp->renegotiate + sp->renegotiate;
+//    sp->keepalive_ping = Time::Duration::seconds(5);
+//    sp->keepalive_timeout = Time::Duration::seconds(60);
+//
+//#ifdef VERBOSE
+//    std::cout << "SERVER OPTIONS: " << sp->options_string() << std::endl;
+//    std::cout << "SERVER PEER INFO:" << std::endl;
+//    std::cout << sp->peer_info_string();
+//#endif
+//
+//    // server stats
+//    MySessionStats::Ptr serv_stats(new MySessionStats);
+//
+//    TestProtoClient<ClientRandomAPI, ClientCryptoAPI, ClientSSLAPI> cli_proto(cp, cli_stats);
+//    TestProtoServer<ServerRandomAPI, ServerCryptoAPI, ServerSSLAPI> serv_proto(sp, serv_stats);
+//
+//    for (int i = 0; i < SITER; ++i)
+//      {
+//#ifdef VERBOSE
+//	std::cout << "***** SITER " << i << std::endl;
+//#endif
+//	cli_proto.reset();
+//	serv_proto.reset();
+//
+//	NoisyWire client_to_server("Client -> Server", &time, rand, 8, 16, 32); // last value: 32
+//	NoisyWire server_to_client("Server -> Client", &time, rand, 8, 16, 32); // last value: 32
+//
+//	int j = -1;
+//	try {
+//	  // start feedback loop
+//	  cli_proto.initial_app_send(message);
+//	  serv_proto.start();
+//
+//	  // message loop
+//	  for (j = 0; j < ITER; ++j)
+//	    {
+//	      client_to_server.xfer(cli_proto, serv_proto);
+//	      server_to_client.xfer(serv_proto, cli_proto);
+//	      time += time_step;
+//	    }
+//	}
+//	catch (const std::exception& e)
+//	  {
+//	    std::cerr << "Exception[" << i << '/' << j << "]: " << e.what() << std::endl;
+//	    return 1;
+//	  }
+//      }
+//
+//    cli_proto.finalize();
+//    serv_proto.finalize();
+//
+//    const size_t ab = cli_proto.app_bytes() + serv_proto.app_bytes();
+//    const size_t nb = cli_proto.net_bytes() + serv_proto.net_bytes();
+//    const size_t db = cli_proto.data_bytes() + serv_proto.data_bytes();
+//
+//    std::cerr << "*** app bytes=" << ab
+//	      << " net_bytes=" << nb
+//	      << " data_bytes=" << db
+//	      << " prog=" << cli_proto.progress() << '/' << serv_proto.progress()
+//              << " D=" << cli_proto.control_drought().raw() << '/' << cli_proto.data_drought().raw() << '/' << serv_proto.control_drought().raw() << '/' << serv_proto.data_drought().raw()
+//              << " N=" << cli_proto.negotiations() << '/' << serv_proto.negotiations()
+//              << " SH=" << cli_proto.slowest_handshake().raw() << '/' << serv_proto.slowest_handshake().raw()
+//              << " HE=" << cli_stats->get_error_count(Error::HANDSHAKE_TIMEOUT) << '/' << serv_stats->get_error_count(Error::HANDSHAKE_TIMEOUT)
+//	      << std::endl;
+//  }
+//  catch (const std::exception& e)
+//    {
+//      std::cerr << "Exception: " << e.what() << std::endl;
+//      return 1;
+//    }
+//  return 0;
+//}
 
-    // RNG
-    ClientRandomAPI::Ptr rng_cli(new ClientRandomAPI());
-    RandomInt<ClientRandomAPI> rand(*rng_cli);
-    PRNG<ClientRandomAPI, ClientCryptoAPI>::Ptr prng_cli(new PRNG<ClientRandomAPI, ClientCryptoAPI>(STRINGIZE(PROTO_DIGEST), rng_cli, 16));
-
-    ServerRandomAPI::Ptr rng_serv(new ServerRandomAPI());
-    PRNG<ServerRandomAPI, ServerCryptoAPI>::Ptr prng_serv(new PRNG<ServerRandomAPI, ServerCryptoAPI>(STRINGIZE(PROTO_DIGEST), rng_serv, 16));
-
-    // init simulated time
-    Time time;
-    const Time::Duration time_step = Time::Duration::binary_ms(100);
-
-    // client config files
-    const std::string ca_crt = read_text("ca.crt");
-    const std::string client_crt = read_text("client.crt");
-    const std::string client_key = read_text("client.key");
-    const std::string server_crt = read_text("server.crt");
-    const std::string server_key = read_text("server.key");
-    const std::string dh_pem = read_text("dh.pem");
-    const std::string tls_auth_key = read_text("tls-auth.key");
-
-    // client config
-    ClientSSLAPI::Config cc;
-    cc.mode = Mode(Mode::CLIENT);
-    cc.frame = frame;
-#ifdef USE_APPLE_SSL
-    cc.load_identity("etest");
-#else
-    cc.load_ca(ca_crt);
-    cc.load_cert(client_crt);
-    cc.load_private_key(client_key);
-#endif
-#ifdef VERBOSE
-    cc.enable_debug();
-#endif
-#if defined(USE_POLARSSL)
-    cc.rng = rng_cli;
-#endif
-
-    // client stats
-    MySessionStats::Ptr cli_stats(new MySessionStats);
-
-    // client ProtoContext config
-    typedef ProtoContext<ClientRandomAPI, ClientCryptoAPI, ClientSSLAPI> ClientProtoContext;
-    ClientProtoContext::Config::Ptr cp(new ClientProtoContext::Config);
-    cp->ssl_ctx.reset(new ClientSSLAPI(cc));
-    cp->frame = frame;
-    cp->now = &time;
-    cp->rng = rng_cli;
-    cp->prng = prng_cli;
-    cp->protocol = Protocol(Protocol::UDPv4);
-    cp->layer = Layer(Layer::OSI_LAYER_3);
-    cp->comp_ctx = CompressContext(CompressContext::LZO_STUB, false);
-    cp->cipher = ClientCryptoAPI::Cipher(STRINGIZE(PROTO_CIPHER));
-    cp->digest = ClientCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
-#ifdef USE_TLS_AUTH
-    cp->tls_auth_key.parse(tls_auth_key);
-    cp->tls_auth_digest = ClientCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
-    cp->key_direction = 0;
-#endif
-    cp->reliable_window = 4;
-    cp->max_ack_list = 4;
-    cp->pid_mode = PacketIDReceive::UDP_MODE;
-    cp->pid_seq_backtrack = 64;
-    cp->pid_time_backtrack = 30;
-#if defined(HANDSHAKE_WINDOW)
-    cp->handshake_window = Time::Duration::seconds(HANDSHAKE_WINDOW);
-#elif SITER > 1
-    cp->handshake_window = Time::Duration::seconds(30);
-#else
-    cp->handshake_window = Time::Duration::seconds(18); // will cause a small number of handshake failures
-#endif
-    cp->become_primary = Time::Duration::seconds(30);
-#if defined(CLIENT_NO_RENEG)
-    cp->renegotiate = Time::Duration::infinite();
-#else
-    cp->renegotiate = Time::Duration::seconds(90);
-#endif
-    cp->expire = cp->renegotiate + cp->renegotiate;
-    cp->keepalive_ping = Time::Duration::seconds(5);
-    cp->keepalive_timeout = Time::Duration::seconds(60);
-
-#ifdef VERBOSE
-    std::cout << "CLIENT OPTIONS: " << cp->options_string() << std::endl;
-    std::cout << "CLIENT PEER INFO:" << std::endl;
-    std::cout << cp->peer_info_string();
-#endif
-
-    // server config
-    ServerSSLAPI::Config sc;
-    sc.mode = Mode(Mode::SERVER);
-    sc.frame = frame;
-    sc.load_ca(ca_crt);
-    sc.load_cert(server_crt);
-    sc.load_private_key(server_key);
-    sc.load_dh(dh_pem);
-#if defined(USE_POLARSSL_SERVER)
-    sc.rng = rng_serv;
-#endif
-#ifdef VERBOSE
-    sc.enable_debug();
-#endif
-
-    // server ProtoContext config
-    typedef ProtoContext<ServerRandomAPI, ServerCryptoAPI, ServerSSLAPI> ServerProtoContext;
-    ServerProtoContext::Config::Ptr sp(new ServerProtoContext::Config);
-    sp->ssl_ctx.reset(new ServerSSLAPI(sc));
-    sp->frame = frame;
-    sp->now = &time;
-    sp->rng = rng_serv;
-    sp->prng = prng_serv;
-    sp->protocol = Protocol(Protocol::UDPv4);
-    sp->layer = Layer(Layer::OSI_LAYER_3);
-    sp->comp_ctx = CompressContext(CompressContext::LZO_STUB, false);
-    sp->cipher = ServerCryptoAPI::Cipher(STRINGIZE(PROTO_CIPHER));
-    sp->digest = ServerCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
-#ifdef USE_TLS_AUTH
-    sp->tls_auth_key.parse(tls_auth_key);
-    sp->tls_auth_digest = ServerCryptoAPI::Digest(STRINGIZE(PROTO_DIGEST));
-    sp->key_direction = 1;
-#endif
-    sp->reliable_window = 4;
-    sp->max_ack_list = 4;
-    sp->pid_mode = PacketIDReceive::UDP_MODE;
-    sp->pid_seq_backtrack = 64;
-    sp->pid_time_backtrack = 30;
-#if defined(HANDSHAKE_WINDOW)
-    sp->handshake_window = Time::Duration::seconds(HANDSHAKE_WINDOW);
-#elif SITER > 1
-    sp->handshake_window = Time::Duration::seconds(30);
-#else
-    sp->handshake_window = Time::Duration::seconds(17) + Time::Duration::binary_ms(512);
-#endif
-    sp->become_primary = Time::Duration::seconds(30);
-#if defined(SERVER_NO_RENEG)
-    sp->renegotiate = Time::Duration::infinite();
-#else
-    sp->renegotiate = Time::Duration::seconds(90);
-#endif
-    sp->expire = sp->renegotiate + sp->renegotiate;
-    sp->keepalive_ping = Time::Duration::seconds(5);
-    sp->keepalive_timeout = Time::Duration::seconds(60);
-
-#ifdef VERBOSE
-    std::cout << "SERVER OPTIONS: " << sp->options_string() << std::endl;
-    std::cout << "SERVER PEER INFO:" << std::endl;
-    std::cout << sp->peer_info_string();
-#endif
-
-    // server stats
-    MySessionStats::Ptr serv_stats(new MySessionStats);
-
-    TestProtoClient<ClientRandomAPI, ClientCryptoAPI, ClientSSLAPI> cli_proto(cp, cli_stats);
-    TestProtoServer<ServerRandomAPI, ServerCryptoAPI, ServerSSLAPI> serv_proto(sp, serv_stats);
-
-    for (int i = 0; i < SITER; ++i)
-      {
-#ifdef VERBOSE
-	std::cout << "***** SITER " << i << std::endl;
-#endif
-	cli_proto.reset();
-	serv_proto.reset();
-
-	NoisyWire client_to_server("Client -> Server", &time, rand, 8, 16, 32); // last value: 32
-	NoisyWire server_to_client("Server -> Client", &time, rand, 8, 16, 32); // last value: 32
-
-	int j = -1;
-	try {
-	  // start feedback loop
-	  cli_proto.initial_app_send(message);
-	  serv_proto.start();
-
-	  // message loop
-	  for (j = 0; j < ITER; ++j)
-	    {
-	      client_to_server.xfer(cli_proto, serv_proto);
-	      server_to_client.xfer(serv_proto, cli_proto);
-	      time += time_step;
-	    }
-	}
-	catch (const std::exception& e)
-	  {
-	    std::cerr << "Exception[" << i << '/' << j << "]: " << e.what() << std::endl;
-	    return 1;
-	  }
-      }
-
-    cli_proto.finalize();
-    serv_proto.finalize();
-
-    const size_t ab = cli_proto.app_bytes() + serv_proto.app_bytes();
-    const size_t nb = cli_proto.net_bytes() + serv_proto.net_bytes();
-    const size_t db = cli_proto.data_bytes() + serv_proto.data_bytes();
-
-    std::cerr << "*** app bytes=" << ab
-	      << " net_bytes=" << nb
-	      << " data_bytes=" << db
-	      << " prog=" << cli_proto.progress() << '/' << serv_proto.progress()
-              << " D=" << cli_proto.control_drought().raw() << '/' << cli_proto.data_drought().raw() << '/' << serv_proto.control_drought().raw() << '/' << serv_proto.data_drought().raw()
-              << " N=" << cli_proto.negotiations() << '/' << serv_proto.negotiations()
-              << " SH=" << cli_proto.slowest_handshake().raw() << '/' << serv_proto.slowest_handshake().raw()
-              << " HE=" << cli_stats->get_error_count(Error::HANDSHAKE_TIMEOUT) << '/' << serv_stats->get_error_count(Error::HANDSHAKE_TIMEOUT)
-	      << std::endl;
-  }
-  catch (const std::exception& e)
-    {
-      std::cerr << "Exception: " << e.what() << std::endl;
-      return 1;
-    }
-  return 0;
-}
-
-int main(int /*argc*/, char* /*argv*/[])
-{
-  // process-wide initialization
-  InitProcess::init();
-
-#if N_THREADS >= 2 && OPENVPN_MULTITHREAD
-  boost::thread* threads[N_THREADS];
-  int i;
-  for (i = 0; i < N_THREADS; ++i)
-    {
-      threads[i] = new boost::thread(boost::bind(&test, i));
-    }
-  for (i = 0; i < N_THREADS; ++i)
-    {
-      threads[i]->join();
-      delete threads[i];
-    }
-  return 0;
-#else
-  return test(1);
-#endif
-}
+//int main(int /*argc*/, char* /*argv*/[])
+//{
+//  // process-wide initialization
+//  InitProcess::init();
+//
+//#if N_THREADS >= 2 && OPENVPN_MULTITHREAD
+//  boost::thread* threads[N_THREADS];
+//  int i;
+//  for (i = 0; i < N_THREADS; ++i)
+//    {
+//      threads[i] = new boost::thread(boost::bind(&test, i));
+//    }
+//  for (i = 0; i < N_THREADS; ++i)
+//    {
+//      threads[i]->join();
+//      delete threads[i];
+//    }
+//  return 0;
+//#else
+//  return test(1);
+//#endif
+//}

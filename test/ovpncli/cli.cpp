@@ -37,7 +37,10 @@
 #include <openvpn/common/file.hpp>
 #include <openvpn/time/timestr.hpp>
 
-#include <client/ovpncli.cpp>
+#include <client/ovpncli.hpp>
+#include <openvpn/client/cliconstants.hpp>
+#include <openvpn/options/merge.hpp>
+
 
 using namespace openvpn;
 
@@ -264,8 +267,7 @@ int main(int argc, char *argv[])
 	  {
 	    if (argc != 1)
 	      goto usage;
-	    ProfileMerge pm(argv[0], "", true,
-			    ProfileParseLimits::MAX_LINE_SIZE, ProfileParseLimits::MAX_PROFILE_SIZE);
+	    ProfileMerge pm( argv[0], "", true, ProfileParseLimits::MAX_LINE_SIZE, ProfileParseLimits::MAX_PROFILE_SIZE);
 	    if (pm.status() != ProfileMerge::MERGE_SUCCESS)
 	      OPENVPN_THROW_EXCEPTION("merge config error: " << pm.status_string() << " : " << pm.error());
 
