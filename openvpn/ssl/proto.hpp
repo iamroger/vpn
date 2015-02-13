@@ -1442,12 +1442,12 @@ namespace openvpn {
 					switch (state)
 					{
 					case C_WAIT_RESET_ACK:
-						//start_handshake();
-						//send_auth();
+						start_handshake();
+						send_auth();
 						set_state(C_WAIT_AUTH);
 						break;
 					case S_WAIT_RESET_ACK:
-						//start_handshake();
+						start_handshake();
 						set_state(S_WAIT_AUTH);
 						break;
 					case C_WAIT_AUTH_ACK:
