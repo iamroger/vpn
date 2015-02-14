@@ -1414,12 +1414,12 @@ namespace openvpn {
 				switch (state)
 				{
 				case C_WAIT_AUTH:
-					recv_auth(*to_app_buf);
+					//recv_auth(*to_app_buf);
 					set_state(C_WAIT_AUTH_ACK);
 					break;
 				case S_WAIT_AUTH:
-					recv_auth(*to_app_buf);
-					send_auth();	
+					//recv_auth(*to_app_buf);
+					//send_auth();	
 					set_state(S_WAIT_AUTH_ACK);
 					break;
 				case S_WAIT_AUTH_ACK: // rare case where client receives auth, goes ACTIVE, but the ACK response is dropped
@@ -1443,11 +1443,11 @@ namespace openvpn {
 					{
 					case C_WAIT_RESET_ACK:
 						start_handshake();
-						send_auth();
+						//send_auth();
 						set_state(C_WAIT_AUTH);
 						break;
 					case S_WAIT_RESET_ACK:
-						start_handshake();
+						//start_handshake();
 						set_state(S_WAIT_AUTH);
 						break;
 					case C_WAIT_AUTH_ACK:
