@@ -12,6 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\client\ovpncli.cpp" />
+    <ClCompile Include="..\..\openvpn\tun\win\init.c" />
+    <ClCompile Include="..\..\openvpn\tun\win\tun.c" />
     <ClCompile Include="..\..\test\ovpncli\cli.cpp" />
     <ClCompile Include="..\..\win\getopt.c" />
   </ItemGroup>
@@ -210,6 +212,7 @@
     <ClInclude Include="..\..\openvpn\tun\tunlog.hpp" />
     <ClInclude Include="..\..\openvpn\tun\tunspec.hpp" />
     <ClInclude Include="..\..\openvpn\tun\tununixbase.hpp" />
+    <ClInclude Include="..\..\openvpn\tun\win\tun.h" />
     <ClInclude Include="..\..\win\getopt.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
